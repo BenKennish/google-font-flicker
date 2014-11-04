@@ -1,0 +1,39 @@
+<?php
+
+include_once('gff.inc.php');
+
+?><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Google Font Flicker (GFF)</title>
+</head>
+<body>
+
+<?php
+$gff = new GoogleFontFlicker();
+$gff->generateFontList();
+
+//echo '<hr />'; var_dump($gff->fontList); echo '<hr />';
+
+echo $gff->genHTMLFontChooser('#sed',  "Element with id 'sed'");
+echo $gff->genHTMLFontChooser('.dismissed', "The CSS class 'dismissed'");
+echo $gff->genHTMLFontChooser('body',  "All of <body>");
+
+
+?>
+
+<p class="dismissed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut finibus eros leo, sit amet ultrices mauris fringilla egestas. Integer finibus volutpat massa, quis sollicitudin neque varius sit amet. Mauris sit amet magna malesuada, efficitur leo id, ultricies felis. Curabitur pretium dui in fermentum luctus. Pellentesque volutpat est sit amet odio vulputate, id venenatis ligula feugiat. Ut vel ex est. Pellentesque tristique non elit vel porttitor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin tincidunt est id mauris faucibus, porttitor tincidunt augue lobortis.</p>
+
+<p>Mauris nibh eros, commodo non porta nec, tempus eget diam. Suspendisse tortor massa, eleifend at elit sed, vehicula dapibus justo. Mauris eleifend porttitor lacus. Nam lobortis non neque at aliquam. Phasellus sit amet nibh felis. Nullam mi enim, lacinia condimentum molestie sed, fermentum eu sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pellentesque vel leo vitae ornare. Cras vel leo ornare, semper velit bibendum, posuere augue. Sed nisl nibh, bibendum et dapibus eget, laoreet in lorem. Nullam feugiat semper nisl, a rutrum massa fringilla in. Vivamus et metus justo. Etiam faucibus commodo mi, rutrum porta lorem malesuada eu.</p>
+
+<p id="sed">Sed hendrerit libero elit, eu mattis tortor ornare sit amet. Sed convallis nisi a posuere gravida. Pellentesque molestie dolor justo, a viverra lorem pharetra quis. Quisque finibus sodales gravida. Sed urna enim, finibus et leo sed, tincidunt tempus sapien. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec facilisis diam ultricies tellus congue iaculis. Quisque tristique libero vitae lacus iaculis, sit amet malesuada nunc ultrices. Etiam ut nibh euismod, imperdiet mi sed, consectetur est. Vestibulum vel efficitur lectus. Donec posuere lectus id enim tempor, vel hendrerit ipsum condimentum. Morbi pretium vehicula tellus, id malesuada massa dignissim ut. Maecenas neque risus, suscipit ac lectus id, interdum lobortis est. Fusce luctus, metus non mollis bibendum, diam nisi ultricies elit, sed dictum sapien eros a velit. Nulla nec ligula sed lacus dapibus auctor quis blandit lorem.</p>
+
+<p class="dismissed">Donec malesuada gravida massa, vitae aliquam massa malesuada ut. Etiam vestibulum lobortis laoreet. Fusce volutpat et purus vel rutrum. Nam vestibulum enim sed rhoncus tempus. Maecenas dignissim, metus sit amet cursus elementum, erat sapien semper orci, nec pharetra quam purus id magna. Aliquam tempor commodo eros. Proin ornare, lorem eu pellentesque dignissim, nisi nisi pellentesque mi, quis eleifend odio neque nec augue. Donec porttitor lacus in velit pretium suscipit. Suspendisse vestibulum vitae sapien in luctus. Nam ultricies non orci nec tristique. Cras porta efficitur facilisis. Vestibulum posuere elit quis elementum sodales. Pellentesque et facilisis nunc, sed facilisis metus. Mauris placerat mollis sollicitudin. Etiam augue felis, pharetra in magna id, molestie tincidunt sapien. Mauris mollis ultrices odio, sed sagittis lorem ultrices et.</p>
+
+<p>Suspendisse sapien tellus, efficitur egestas mattis sed, aliquam fringilla est. Sed posuere quam sed egestas volutpat. Proin vel accumsan massa, eu dignissim est. Quisque commodo lacus a facilisis scelerisque. Donec eget consequat dui, eu fringilla turpis. Nullam vel ligula in leo ultrices semper eget ut risus. Vivamus est ante, placerat non faucibus in, sagittis eu enim. Donec tempus turpis quis quam ullamcorper venenatis. Vestibulum tempor viverra ligula, id suscipit dolor molestie quis.</p>
+
+<script src="gff.js"></script>
+
+</body>
+</html>

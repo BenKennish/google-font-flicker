@@ -1,0 +1,3 @@
+# don't commit any of the config (private data)
+# config.example.inc.php serves as a template
+config.inc.php
