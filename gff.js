@@ -1,5 +1,9 @@
-console.log("Started gff.js");
+// Google Font Flicker
+//
+// Ben Kennish
+// Nov 2014
 
+console.log("Started gff.js");
 
 // called when a <select> box gets updated.
 // it inserts the appropriate <link rel="stylesheet">
@@ -9,7 +13,10 @@ function onSelectNewFontFamily(e)
 {
     console.log("onSelectNewFontFamily()", e);
 
-    var selectBox = e.target;
+    var selectBox;
+
+    selectBox = e.target;
+
     if (typeof selectBox.dataset.gffSelector == 'undefined')
     {
         console.error("The select element lacked a 'data-gff-selector' attribute");
@@ -17,6 +24,9 @@ function onSelectNewFontFamily(e)
     }
 
     var selector = selectBox.dataset.gffSelector;
+
+    // do nothing if they selected the blank option
+    if (selectBox.value == '-') return;
 
     // insert the appropriate stylesheet as a <link> within <head>
     // (TODO: check if it already exists in the DOM!)
@@ -38,6 +48,37 @@ function onSelectNewFontFamily(e)
     }
 }
 
+
+function gotoNextOrPrevFont(clickEvent)
+{
+    //console.log('gotoNextOrPrevFont', clickEvent);
+
+    var clickedButton = clickEvent.target;
+
+    if (typeof clickedButton.dataset.gffSelectId != 'undefined')
+    {
+        var select = document.getElementById(clickedButton.dataset.gffSelectId);
+
+        if (clickedButton.dataset.gffAction == 'next')
+        {
+            console.log("next request for ", select);
+            select.selectedIndex++;
+            onSelectNewFontFamily({ target: select });
+        }
+        else if (clickedButton.dataset.gffAction == 'prev')
+        {
+            console.log("prev request for ", select);
+            select.selectedIndex--;
+            onSelectNewFontFamily({ target: select });
+        }
+        else
+        {
+            console.error('Unknown gffAction: '+clickedButton.dataset.gffAction);
+        }
+    }
+}
+
+
 document.addEventListener("DOMContentLoaded", function(event)
 {
     // add listeners to call selectNewFontFamily() whenever
@@ -52,6 +93,18 @@ document.addEventListener("DOMContentLoaded", function(event)
         if (typeof selectBoxes[i].dataset.gffSelector != 'undefined')
         {
             selectBoxes[i].addEventListener('change', onSelectNewFontFamily);
+        }
+    }
+
+    // find all buttons with data-gff-select-id attributes set
+    var buttons = document.getElementsByTagName('button');
+
+    for (var i = 0; i < buttons.length; i++)
+    {
+        if (typeof buttons[i].dataset.gffSelectId != 'undefined')
+        {
+            console.log("Attaching gotoNextOrPrevFont to a button");
+            buttons[i].addEventListener('click', gotoNextOrPrevFont);
         }
     }
 

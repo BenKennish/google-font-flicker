@@ -11,7 +11,9 @@ include_once('gff.inc.php');
 <body>
 
 <?php
-$gff = new GoogleFontFlicker();
+
+$filter = array('sans-serif'=>true, 'monospace'=>true);
+$gff = new GoogleFontFlicker('alpha', $filter);
 $gff->generateFontList();
 
 //echo '<hr />'; var_dump($gff->fontList); echo '<hr />';
