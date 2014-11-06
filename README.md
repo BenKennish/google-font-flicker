@@ -1,4 +1,4 @@
-gff
+Google Font Flicker (GFF)
 ===
 
-Google Font Flicker - an easy way to preview a site in different Google Fonts
+An easy way to preview a PHP site in different Google Fonts
