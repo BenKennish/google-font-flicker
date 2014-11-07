@@ -1,3 +1,2 @@
-# don't commit any of the config (private data)
-# config.example.inc.php serves as a template
-config.inc.php
+# don't commit any of the demo config (private API key)
+demo.inc.php

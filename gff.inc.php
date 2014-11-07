@@ -52,34 +52,56 @@ class GoogleFontFlicker
 
         //echo '<pre>'; var_dump($ret->items); echo '</pre>'; exit;
 
-        // option to filter by category at least
+        // valid font categories:
         // serif, sans-serif, display, handwriting, monospace
-        // then later allow filtering on thickness, slant, and width!
+        //
+        // TODO: allow filtering on thickness, slant, and width
         if (!empty($filter))
         {
             if (!is_array($filter))
                 throw new InvalidArgumentException('$filter is not an array');
 
-            if (!empty($filter['categories']) && is_array($filter['categories']))
-            {
-                // this should be an enum array of categories that we wish to include
-                // e.g.  [sans-serif]=>true, [display]=>true
+            $filteredFontList = array();
 
-                $filteredFontList = array();
+            if (!empty($filter['categories']))
+            {
+                if (!is_array($filter['categories']))
+                    throw new InvalidArgumentException('$filter[categories] is not an array');
+
+                // this should be an enum array of font categories that we wish to include
+                // e.g.  [sans-serif]=>true, [display]=>true
 
                 foreach($ret->items as $font)
                 {
+                    // filter[categories] is a hash table for quick lookup
                     if (!empty($filter['categories'][$font->category]))
                     {
                         $filteredFontList[] = $font;
                     }
                 }
-                $this->fontList = $filteredFontList;
+                reset($ret->items);
+
             }
-            else
+
+            if (!empty($filter['families']))
             {
-                throw new InvalidArgumentException('$filter[categories] is empty or not an array');
+                if (!is_array($filter['families']))
+                    throw new InvalidArgumentException('$filter[families] is not an array');
+
+                // this should be an enum array of font families that we wish to include
+                // e.g.  [Droid Sans]=>true, [Play]=>true
+
+                foreach ($ret->items as $font)
+                {
+                    if (!empty($filter['families'][$font->family]))
+                    {
+                        $filteredFontList[] = $font;
+                    }
+                }
+                reset($ret->items);
             }
+
+            $this->fontList = $filteredFontList;
         }
         else
         {
