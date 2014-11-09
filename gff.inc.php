@@ -139,14 +139,13 @@ class GoogleFontFlicker
         $ret = '<div style="display: inline-block; padding: 10px; border: 1px dashed black; font-family: sans-serif !important; background-color: '.$randomColour.';">'.PHP_EOL;
         // NB: the font family is marked !important so that it stays fixed as the user chooses fonts for the rest of the page
 
-        $ret .= '    <label for="gff'.$id.'">'.htmlspecialchars($description, ENT_QUOTES, 'UTF-8').'</label>';
-
         $selectID = 'gff'.$id;
 
+        $ret .= '    <label for="'.$selectID.'">'.htmlspecialchars($description, ENT_QUOTES, 'UTF-8').'</label>';
         $ret .= '<button data-gff-select-id="'.$selectID.'" data-gff-action="prev">&lt;</button> '.PHP_EOL;
         $ret .= '    <select id="'.$selectID.'" data-gff-selector="'.htmlspecialchars($selector, ENT_QUOTES, 'UTF-8').'">'.PHP_EOL;
         $ret .= $this->htmlFontFamilyOptions;
-        $ret .= '    </select></label>'.PHP_EOL;
+        $ret .= '    </select>'.PHP_EOL;
         $ret .= '<button data-gff-select-id="'.$selectID.'" data-gff-action="next">&gt;</button>';
 
         $ret .= '</div>'.PHP_EOL;
